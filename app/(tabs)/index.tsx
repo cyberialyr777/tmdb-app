@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, FlatList, Image, ActivityIndicator, SafeAreaView, StatusBar } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { ActivityIndicator, FlatList, Image, SafeAreaView, StatusBar, StyleSheet, Text, View } from 'react-native';
 import apiClient from '../../api/tmdb';
 
 interface Movie {
@@ -33,7 +33,9 @@ export default function HomeScreen() {
   useEffect(() => {
     const fetchMovies = async () => {
       try {
-        const response = await apiClient.get<{ results: Movie[] }>('/movie/rutaquenoexiste');
+        const response = await apiClient.get<{ results: Movie[] }>('/movie/popular', {
+          params: { language: 'es-ES', page: 1 },
+        });
 
         if (response.status === 200) {
           setMovies(response.data.results);

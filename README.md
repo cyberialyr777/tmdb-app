@@ -48,3 +48,25 @@ Join our community of developers creating universal apps.
 
 - [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
 - [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+
+## TMDB setup and movie search
+
+This app integrates with The Movie Database (TMDB) API using a bearer token loaded from your environment.
+
+1) Get a TMDB v4 API Read Access Token from https://www.themoviedb.org/settings/api
+
+2) Create a `.env` file in the project root with:
+
+```
+TMDB_API_TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...  # your token here
+```
+
+3) Start the app normally. The Explore tab now includes a movie search:
+
+- Type at least 2 characters to search.
+- Results are localized in Spanish (es-ES) by default.
+
+API helpers are in `api/tmdb.js`:
+
+- `searchMovies(query: string, page?: number, language?: string)`
+- `getImageUrl(path: string | null, size?: string)`
